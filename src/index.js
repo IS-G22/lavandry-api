@@ -70,7 +70,9 @@ var TipoLavaggio = require("./tipo-lavaggio");
 /**
  * Avvio Express
  */
-app.listen(3000, () => {
+
+let PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
     MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, (error, client) => {
         if (error) {
             console.log(error)
