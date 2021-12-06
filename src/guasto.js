@@ -1,6 +1,7 @@
-exports.guasto = (_, response) => {
-    if(response.data.lavatrice && response.data.text){
-        console.log("Invia una email al tecnico riguardo la Lavatrice "+response.data.lavatrice+".\nSegnalazione: "+response.data.text);
+exports.guasto = (request, response) => {
+    console.log(request)
+    if(request.query.lavatrice && request.quey.text){
+        console.log("Invia una email al tecnico riguardo la Lavatrice "+request.quey.lavatrice+".\nSegnalazione: "+request.quey.text);
         response.send("success!");
     }else{
         response.send("failure!");
