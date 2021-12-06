@@ -10,8 +10,8 @@
                 "url": "https: //spdx.org/licenses/MIT.html"
             },
             "contact": {
-                "name": "Grouppo22",
-                "url": "http: //localhost:49146/"
+                "name": "G-22",
+                "url": "https://github.com/IS-G22"
             }
         },
         "servers": [
@@ -20,7 +20,7 @@
                 "description": "Deployment server"
             },
             {
-                "url": "http://localhost:49146/",
+                "url": "http://localhost:3000/",
                 "description": "Development server"
             }
         ]
