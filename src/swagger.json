@@ -16,12 +16,12 @@
         },
         "servers": [
             {
-                "url": "http://localhost:49146/",
-                "description": "Development server"
+                "url": "https://lavadry.herokuapp.com/",
+                "description": "Deployment server"
             },
             {
-                "url": "http://tbd:tbd/",
-                "description": "Deployment server"
+                "url": "http://localhost:49146/",
+                "description": "Development server"
             }
         ]
     },
