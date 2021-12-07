@@ -138,6 +138,47 @@ app.get("/api/tipo-lavaggio", TipoLavaggio.list);
  */
 app.get("/api/lavatrici", Lavatrici.lista);
 //app.post("/api/lavatrici/add", Lavatrici.add);
+
+/**
+ * @swagger
+ * /api/lavatrici/apri:
+ *   get:
+ *     summary: Open the lavatrice.
+ *     description: Open the lavatrice.
+ *     params:
+ *       id_lavatrice:
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: A list of lavatrici.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: integer
+ *                         description: Id.
+ *                         example: 67869
+ *                       id:
+ *                         type: integer
+ *                         description: Id.
+ *                         example: 1
+ *                       hardware_id:
+ *                         type: string
+ *                         description: Id hardware.
+ *                         example: jdkahoiha
+ *                       stato:
+ *                         type: string
+ *                         description: Stato della lavatrice.
+ *                         example: sbloccata
+ * 
+ */
 app.get("/api/lavatrici/apri", Lavatrici.apri);
 app.get("/api/lavatrici/blocca", Lavatrici.blocca);
 app.get("/api/lavatrici/sblocca", Lavatrici.sblocca);
