@@ -1,0 +1,178 @@
+# LISTA LAVATRICi
+/api/lavatrici:
+  get:
+    summary: Retrieve a list of lavatrici.
+    description: Retrieve a list of lavatrici from the Server.
+    tags:
+      - Lavatrice
+    responses:
+      200:
+        description: A list of lavatrici.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: integer
+                        description: Id.
+                        example: 67869
+                      id:
+                        type: integer
+                        description: Id.
+                        example: 1
+                      hardware_id:
+                        type: string
+                        description: Id hardware.
+                        example: jdkahoiha
+                      stato:
+                        type: string
+                        description: Stato della lavatrice.
+                        example: sbloccata
+# APRI LAVATRICE DA UTENTE
+/api/lavatrici/apri:
+  get:
+    summary: Apri la lavatrice
+    descriprion: Apri la lavatrice da id_prenotazione
+    tags:
+      - Lavatrice
+    parameters:
+      - in: query
+        name: id_prenotazione
+        schema:
+          type: string
+          description: identificativo della prenotazione
+    responses:
+      200:
+        description: Lavatrice
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    _id:
+                      type: integer
+                      description: Id.
+                      example: 67869
+                    id:
+                      type: integer
+                      description: Id.
+                      example: 1
+                    hardware_id:
+                      type: string
+                      description: Id hardware.
+                      example: jdkahoiha
+                    stato:
+                      type: string
+                      description: Stato della lavatrice.
+                      example: sbloccata
+# APRI LAVATRICE DA ADMIN
+/api/lavatrice/{id_lavatrice}/apri:
+  get:
+    summary: Apri la lavatrice
+    descriprion: Apri la lavatrice da id_lavatrice
+    tags:
+      - Lavatrice
+    parameters:
+      - in: path
+        name: id_lavatrice
+        schema:
+          type: string
+          description: identificativo della lavatrice
+    responses:
+      200:
+        description: Lavatrice
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    _id:
+                      type: integer
+                      description: Id.
+                      example: 67869
+                    id:
+                      type: integer
+                      description: Id.
+                      example: 1
+                    hardware_id:
+                      type: string
+                      description: Id hardware.
+                      example: jdkahoiha
+                    stato:
+                      type: string
+                      description: Stato della lavatrice.
+                      example: sbloccata
+# BLOCCA LAVATRICE
+/api/lavatrici/blocca:
+  get:
+    summary: Blocca la lavatrice
+    descriprion: Blocca la lavatrice da id_lavatrice
+    tags:
+      - Lavatrice
+    parameters:
+      - in: query
+        name: id_lavatrice
+        schema:
+          type: string
+          description: identificativo della lavatrice
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: Messaggio di stato.
+                      example: ok
+                    stato:
+                      type: string
+                      description: Stato della lavatrice.
+                      example: sbloccata
+# BLOCCA LAVATRICE
+/api/lavatrici/sblocca:
+  get:
+    summary: Sblocca la lavatrice
+    descriprion: Sblocca la lavatrice da id_lavatrice
+    tags:
+      - Lavatrice
+    parameters:
+      - in: query
+        name: id_lavatrice
+        schema:
+          type: string
+          description: identificativo della lavatrice
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: Messaggio di stato.
+                      example: ok
+                    stato:
+                      type: string
+                      description: Stato della lavatrice.
+                      example: bloccata

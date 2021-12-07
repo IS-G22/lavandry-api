@@ -1,3 +1,4 @@
+var mongo = require('mongodb');
 exports.BLOCCATA = 'bloccata';
 exports.SBLOCCATA = 'sbloccata';
 
@@ -22,14 +23,30 @@ exports.apri = async (request, response) => {
         return;
     }
     let id_lavatrice = -1;
-    if (!request.query.id_lavatrice) {
+    if (!request.params.id_lavatrice) {
         response.send({ error: "Inserisci il parametro <b>id_lavatrice</b>", status: 'err' })
         return;
     }
-    id_lavatrice = parseInt(request.query.id_lavatrice);
+    id_lavatrice = parseInt(request.params.id_lavatrice);
     console.log(id_lavatrice)
     console.log(await lavatrici.findOne({ id: id_lavatrice }))
     response.send(await lavatrici.findOne({ id: id_lavatrice }));
+}
+
+exports.apriDaPrenotazione = async (request, response) => {
+    if (!global.database) {
+        response.send({ error: "DataBase non raggiungibile" })
+        return;
+    }
+    let id_prenotazione = -1;
+    if (!request.query.id_prenotazione) {
+        response.send({ error: "Inserisci il parametro <b>id_prenotazione</b>", status: 'err' })
+        return;
+    }
+    id_prenotazione = parseInt(request.query.id_prenotazione);
+    console.log(id_prenotazione)
+    let prenotazione = await logs.findOne({ _id: new mongo.ObjectID(id_prenotazione) });
+    response.send(await lavatrici.findOne({ id: prenotazione.id_lavatrice }));
 }
 
 exports.blocca = async (request, response) => {
@@ -41,7 +58,7 @@ exports.blocca = async (request, response) => {
     if (!request.query.id_lavatrice) {
         response.send({ error: "Inserisci il parametro <b>id_lavatrice</b>" })
         return;
-    }
+    } 
     id_lavatrice = parseInt(request.query.id_lavatrice);
     let lavatrice = await lavatrici.findOne({ id: id_lavatrice });
 

@@ -77,7 +77,7 @@ app.listen(PORT, () => {
             console.log(error)
         } else {
             global.database = client.db(DATABASE);
-            console.log("Mongo DB Connection Successfull");
+            console.log("Mongo DB Connection Successfull on port", PORT);
 
             /**
              * "Riempio" le variabili delle collezioni
@@ -99,86 +99,12 @@ app.listen(PORT, () => {
 app.get("/api/tipo-lavaggio", TipoLavaggio.list);
 
 /**
- * @swagger
- * /api/lavatrici:
- *   get:
- *     summary: Retrieve a list of lavatrici.
- *     description: Retrieve a list of lavatrici from the Server.
- *     responses:
- *       200:
- *         description: A list of lavatrici.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       _id:
- *                         type: integer
- *                         description: Id.
- *                         example: 67869
- *                       id:
- *                         type: integer
- *                         description: Id.
- *                         example: 1
- *                       hardware_id:
- *                         type: string
- *                         description: Id hardware.
- *                         example: jdkahoiha
- *                       stato:
- *                         type: string
- *                         description: Stato della lavatrice.
- *                         example: sbloccata
- * 
+ * Lavartrici
  */
 app.get("/api/lavatrici", Lavatrici.lista);
 //app.post("/api/lavatrici/add", Lavatrici.add);
-
-/**
- * @swagger
- * /api/lavatrici/apri:
- *   get:
- *     summary: Open the lavatrice.
- *     description: Open the lavatrice.
- *     params:
- *       id_lavatrice:
- *         type: integer
- *     responses:
- *       200:
- *         description: A list of lavatrici.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       _id:
- *                         type: integer
- *                         description: Id.
- *                         example: 67869
- *                       id:
- *                         type: integer
- *                         description: Id.
- *                         example: 1
- *                       hardware_id:
- *                         type: string
- *                         description: Id hardware.
- *                         example: jdkahoiha
- *                       stato:
- *                         type: string
- *                         description: Stato della lavatrice.
- *                         example: sbloccata
- * 
- */
-app.get("/api/lavatrici/apri", Lavatrici.apri);
+app.get("/api/lavatrici/apri", Lavatrici.apriDaPrenotazione);
+app.get("/api/lavatrice/:id_lavatrice/apri", Lavatrici.apri);
 app.get("/api/lavatrici/blocca", Lavatrici.blocca);
 app.get("/api/lavatrici/sblocca", Lavatrici.sblocca);
 
@@ -200,4 +126,4 @@ app.post("/api/crea-prenotazione", CreaPrenotazione.creaPrenotazione)
  * Segnalazione Guasto
  */
 
- app.post("/api/segnala", Guasto.guasto);
+app.post("/api/segnala", Guasto.guasto);

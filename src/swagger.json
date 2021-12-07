@@ -5,7 +5,6 @@
             "title": "Lavandry API",
             "version": "1.0.0",
             "description": "This is a REST API application made with Express.",
-        
             "contact": {
                 "name": "G-22",
                 "url": "https://github.com/IS-G22"
@@ -23,6 +22,10 @@
         ]
     },
     "apis": [
-        "src/index.js"
+        "api-docs/tipo-lavaggio.yaml",
+        "api-docs/lavatrici.yaml",
+        "api-docs/prenotazioni.yaml",
+        "./api-docs/crea-prenotazione.yaml",
+        "./api-docs/guasto.yaml"
     ]
 }
