@@ -65,8 +65,7 @@ var Prenotazioni = require("./prenotazioni-v2");
 var CreaPrenotazione = require("./crea-prenotazione");
 var Lavatrici = require("./lavatrici");
 var TipoLavaggio = require("./tipo-lavaggio");
-
-
+var Guasto = require("./guasto");
 /**
  * Avvio Express
  */
@@ -196,3 +195,9 @@ app.delete("/api/prenotazioni/cancella", Prenotazioni.cancella);
 app.get("/api/giorni-prenotabili", CreaPrenotazione.giorniPrenotabili);
 app.get("/api/slot-disponibili", CreaPrenotazione.slotDisponibili)
 app.post("/api/crea-prenotazione", CreaPrenotazione.creaPrenotazione)
+
+/**
+ * Segnalazione Guasto
+ */
+
+ app.post("/api/segnala", Guasto.guasto);
