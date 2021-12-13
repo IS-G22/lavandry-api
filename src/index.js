@@ -93,7 +93,7 @@ app.listen(PORT, () => {
     console.log("Lavandry API is running!");
 });
 /**
- * Tipi di Lavaggio
+ * Tipi di Lavaggio 
  */
 
 app.get("/api/tipo-lavaggio", TipoLavaggio.list);

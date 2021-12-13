@@ -1,34 +1,194 @@
-# LISTA LAVATRICi
-/prenotazioni/attive/utente:
+# LISTA PRENOTAZIONI ATTIVE
+/api/prenotazioni/attive/utente:
   get:
-    summary: Retrieve a list of lavatrici.
-    description: Retrieve a list of lavatrici from the Server.
+    summary: Restituisce una lista di prenotzioni
+    description: Restituisce la lista di tutte le prenotazioni attive dell'utente. Con attive si intende future o non acora terminate
+    tags:
+      - Prenotazioni
+    parameters:
+      - in: query
+        name: id_utente
+        schema:
+          type: string
+          description: identificativo della dell'utente
     responses:
       200:
-        description: A list of lavatrici.
+        description: Lista di prenotazioni
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: Id.
+                    example: "61afa99d37d6029db314ca88"
+                  data_inizio:
+                    type: int
+                    example: 1639987200000
+                  data_fine:
+                    type: int
+                    example: 1639994400000
+                  inizio_prenotazione:
+                    type: string
+                    example: "2021-12-20T08:00:00.000Z"
+                  fine_prenotazione:
+                    type: string
+                    example: "2021-12-20T10:00:00.000Z"
+                  stato:
+                    type: string
+                    example: "occupato"
+                  id_lavatrice:
+                    type: int
+                    example: 1
+                  id_utente:
+                    type: int
+                    example: 1
+                  id_tipo_lavaggio:
+                    type: int
+                    example: 1
+      400:
+        description: Mancato invio parametro
         content:
           application/json:
             schema:
               type: object
               properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      _id:
-                        type: integer
-                        description: Id.
-                        example: 67869
-                      id:
-                        type: integer
-                        description: Id.
-                        example: 1
-                      hardware_id:
-                        type: string
-                        description: Id hardware.
-                        example: jdkahoiha
-                      stato:
-                        type: string
-                        description: Stato della lavatrice.
-                        example: sbloccata
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_utente</b>"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
+
+# LISTA PRENOTAZIONI ANCHE PASSATE
+/api/prenotazioni/utente:
+  get:
+    summary: Restituisce una lista di prenotzioni
+    description: Restituisce la lista di tutte le prenotazioni eseguite dall'utente non cancellate
+    tags:
+      - Prenotazioni
+    parameters:
+      - in: query
+        name: id_utente
+        schema:
+          type: string
+          description: identificativo della dell'utente
+    responses:
+      200:
+        description: Lista di prenotazioni
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: Id.
+                    example: "61afa99d37d6029db314ca88"
+                  data_inizio:
+                    type: int
+                    example: 1639987200000
+                  data_fine:
+                    type: int
+                    example: 1639994400000
+                  inizio_prenotazione:
+                    type: string
+                    example: "2021-12-20T08:00:00.000Z"
+                  fine_prenotazione:
+                    type: string
+                    example: "2021-12-20T10:00:00.000Z"
+                  stato:
+                    type: string
+                    example: "occupato"
+                  id_lavatrice:
+                    type: int
+                    example: 1
+                  id_utente:
+                    type: int
+                    example: 1
+                  id_tipo_lavaggio:
+                    type: int
+                    example: 1
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_utente</b>"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
+# CANCELLA PRENOTAZIONE
+/api/prenotazioni/cancella:
+  delete:
+    summary: Cancella una prenotazione
+    description: Cancella una prenotazione e libera il suo slot
+    tags:
+      - Prenotazioni
+    parameters:
+      - in: query
+        name: id_prenotazione
+        schema:
+          type: string
+          description: identificativo della della prenotazione
+    responses:
+      200:
+        description: Lista di prenotazioni
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Id.
+                  example: "ok"
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_prenotazione</b>"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"

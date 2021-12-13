@@ -34,6 +34,28 @@
                         type: string
                         description: Stato della lavatrice.
                         example: sbloccata
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_lavatrice</b>"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA UTENTE
 /api/lavatrici/apri:
   get:
@@ -74,6 +96,39 @@
                       type: string
                       description: Stato della lavatrice.
                       example: sbloccata
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_prenotazione</b>"
+      404:
+        description: Prenotazione insesistente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Lavatrice Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA ADMIN
 /api/lavatrice/{id_lavatrice}/apri:
   get:
@@ -114,6 +169,39 @@
                       type: string
                       description: Stato della lavatrice.
                       example: sbloccata
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_lavatrice</b>"
+      404:
+        description: Lavatrice insesistente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Lavatrice Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
 # BLOCCA LAVATRICE
 /api/lavatrici/blocca:
   get:
@@ -145,6 +233,39 @@
                       type: string
                       description: Stato della lavatrice.
                       example: sbloccata
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_lavatrice</b>"
+      404:
+        description: Lavatrice insesistente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Lavatrice Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
 # BLOCCA LAVATRICE
 /api/lavatrici/sblocca:
   get:
@@ -176,3 +297,36 @@
                       type: string
                       description: Stato della lavatrice.
                       example: bloccata
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_lavatrice</b>"
+      404:
+        description: Lavatrice insesistente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Lavatrice Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"

@@ -2,6 +2,11 @@ var Formatter = require('./tools/formatter')
 exports.LIBERO = 'libero';
 exports.OCCUPATO = 'occupato';
 exports.giorniPrenotabili = async (request, response) => {
+    if (!global.database) {
+        response.status(503)
+        response.send({ error: "DataBase non raggiungibile" })
+        return;
+    }
     let id_tipo_lavaggio;
     let tipoLavaggio;
     let durata_lavaggio = null;
@@ -9,6 +14,11 @@ exports.giorniPrenotabili = async (request, response) => {
 
         id_tipo_lavaggio = parseInt(request.query.id_tipo_lavaggio)
         tipoLavaggio = await tipiLavaggio.findOne({ id: id_tipo_lavaggio });
+        if (!tipoLavaggio) {
+            response.status(404);
+            response.send({ error: "Tipologia di Lavaggio inesistente" })
+            return;
+        }
         durata_lavaggio = tipoLavaggio.durata;
 
         let data_inizio_ricerca = new Date();
@@ -46,6 +56,7 @@ exports.giorniPrenotabili = async (request, response) => {
 
 exports.slotDisponibili = async (request, response) => {
     if (!global.database) {
+        response.status(503)
         response.send({ error: "DataBase non raggiungibile" })
         return;
     }
@@ -133,6 +144,7 @@ exports.slotDisponibili = async (request, response) => {
 
 exports.creaPrenotazione = async (request, response) => {
     if (!global.database) {
+        response.status(503)
         response.send({ error: "DataBase non raggiungibile" })
         return;
     }
@@ -141,14 +153,17 @@ exports.creaPrenotazione = async (request, response) => {
     let numero_slot = -1;
     let id_utente = -1;
     if (!request.query.id_tipo_lavaggio) {
+        response.status(400)
         response.send({ error: "Inserisci il parametro <b>id_tipo_lavaggio</b>" })
         return;
     }
     if (!request.query.slot) {
+        response.status(400)
         response.send({ error: "Inserisci il parametro <b>slot</b>" })
         return;
     }
     if (!request.query.id_utente) {
+        response.status(400)
         response.send({ error: "Inserisci il parametro <b>id_utente</b>" })
         return;
     }

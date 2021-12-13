@@ -1,0 +1,201 @@
+# LISTA GIORNI PRENOTABILI
+/api/giorni-prenotabili:
+  get:
+    summary: Restituisce una lista di giorni prenotabili
+    description: Restituisce una lista di giorni prenotabili in base alla tipologia di lavaggio inserita
+    tags:
+      - Creazione Prenotazione
+    parameters:
+      - in: query
+        name: id_tipo_lavaggio
+        schema:
+          type: string
+          description: identificativo della tipoligia di lavaggio
+    responses:
+      200:
+        description: Lista di giorni prenotabili
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  giorno:
+                    type: int
+                    example: 1
+                  date:
+                    type: string
+                    example: "2021-12-20T08:00:00.000Z"
+
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_tipo_lavaggio</b>"
+      404:
+        description: Tipologia di Lavaggio inesistente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Tipologia di Lavaggio Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
+# LISTA SLOT DISPONIBILI
+/api/slot-disponibili:
+  get:
+    summary: Restituisce una lista di slot disponibili
+    description: Restituisce una lista di slot disponibili  in base alla tipologia di lavaggio inserita ed al giorno selezionato
+    tags:
+      - Creazione Prenotazione
+    parameters:
+      - in: query
+        name: id_tipo_lavaggio
+        schema:
+          type: string
+          description: identificativo della tipoligia di lavaggio
+      - in: query
+        name: giorno
+        schema:
+          type: int
+          description: offset di giorni da oggi (oggi = 0, domani = 1...)
+    responses:
+      200:
+        description: Lista di slot disponibili
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  slot:
+                    type: int
+                    example: 1639468800000
+                  date:
+                    type: string
+                    example: "2021-12-14T08:00:00.000Z"
+
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_tipo_lavaggio</b>"
+      404:
+        description: Non trovato
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Tipologia di Lavaggio Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
+# CREA PRENOTAZIONE
+/api/crea-prenotazione:
+  post:
+    summary: Crea la prenotazione
+    description: Crea la prenotazione in base ai parametri passati
+    tags:
+      - Creazione Prenotazione
+    parameters:
+      - in: query
+        name: id_tipo_lavaggio
+        schema:
+          type: string
+          description: identificativo della tipoligia di lavaggio
+      - in: query
+        name: slot
+        schema:
+          type: int
+          description: Slot scelto
+      - in: query
+        name: id_utente
+        schema:
+          type: int
+          description: Id dell'utente attuale
+    responses:
+      200:
+        description: Lista di slot disponibili
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+      400:
+        description: Mancato invio parametro
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Inserisci il parametro <b>id_tipo_lavaggio</b>"
+      404:
+        description: Non trovato
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "Tipologia di Lavaggio Insesistente"
+      503:
+        description: Servizio non disponibile
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: Messaggio di errore.
+                  example: "DataBase non raggiungibile"
