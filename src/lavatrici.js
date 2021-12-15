@@ -8,7 +8,7 @@ exports.lista = async (_, response) => {
         response.send({ error: "DataBase non raggiungibile" })
         return;
     }
-    response.send(await lavatrici.find().toArray());
+    response.send(await lavatrici.find().sort({ id: 1 }).toArray());
 }
 
 exports.add = async (request, response) => {
