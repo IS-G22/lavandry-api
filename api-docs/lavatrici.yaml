@@ -58,7 +58,7 @@
                   example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA UTENTE
 /api/lavatrici/apri:
-  get:
+  post:
     summary: Apri la lavatrice
     descriprion: Apri la lavatrice da id_prenotazione
     tags:
@@ -131,7 +131,7 @@
                   example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA ADMIN
 /api/lavatrice/{id_lavatrice}/apri:
-  get:
+  post:
     summary: Apri la lavatrice
     descriprion: Apri la lavatrice da id_lavatrice
     tags:

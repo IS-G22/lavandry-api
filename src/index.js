@@ -71,14 +71,22 @@ var Guasto = require("./guasto");
  */
 
 let PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, (error, client) => {
+
+let ready = () => { };
+function onReady(func) {
+    ready = func;
+}
+
+
+app.listen(PORT, async () => {
+    MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, async (error, client) => {
         if (error) {
             console.log(error)
         } else {
             global.database = client.db(DATABASE);
             console.log("Mongo DB Connection Successfull on port", PORT);
 
+            dbConnected = true;
             /**
              * "Riempio" le variabili delle collezioni
              * In verità crea solo una pre-query sulla collection 
@@ -88,6 +96,7 @@ app.listen(PORT, () => {
             global.lavatrici_sbloccate = global.database.collection("lavatrici_sbloccate");
             global.prenotazioni = global.database.collection("prenotazione_tipo_lavaggio");
             global.slots = global.database.collection("slots");
+            ready();
         }
     })
     console.log("Lavandry API is running!");
@@ -105,8 +114,8 @@ app.get("/api/lavatrici", Lavatrici.lista);
 //app.post("/api/lavatrici/add", Lavatrici.add);
 app.get("/api/lavatrici/apri", Lavatrici.apriDaPrenotazione);
 app.get("/api/lavatrice/:id_lavatrice/apri", Lavatrici.apri);
-app.get("/api/lavatrici/blocca", Lavatrici.blocca);
-app.get("/api/lavatrici/sblocca", Lavatrici.sblocca);
+app.post("/api/lavatrici/blocca", Lavatrici.blocca);
+app.post("/api/lavatrici/sblocca", Lavatrici.sblocca);
 
 /**
  * Prenotazioni
@@ -126,3 +135,5 @@ app.post("/api/crea-prenotazione", CreaPrenotazione.creaPrenotazione)
  * Segnalazione Guasto
  */
 app.post("/api/segnala", Guasto.guasto);
+
+module.exports = { app, onReady };
