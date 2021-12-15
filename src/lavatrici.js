@@ -54,9 +54,8 @@ exports.apriDaPrenotazione = async (request, response) => {
         response.send({ error: "Inserisci il parametro <b>id_prenotazione</b>", status: 'err' })
         return;
     }
-    id_prenotazione = parseInt(request.query.id_prenotazione);
-    console.log(id_prenotazione)
-    let prenotazione = await logs.findOne({ _id: new mongo.ObjectId(id_prenotazione) });
+    id_prenotazione = request.query.id_prenotazione;
+    let prenotazione = await slots.findOne({ _id: new mongo.ObjectId(id_prenotazione) });
     if (prenotazione)
         response.send(await lavatrici.findOne({ id: prenotazione.id_lavatrice }));
     else {

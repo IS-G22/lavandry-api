@@ -125,5 +125,4 @@ app.post("/api/crea-prenotazione", CreaPrenotazione.creaPrenotazione)
 /**
  * Segnalazione Guasto
  */
-
 app.post("/api/segnala", Guasto.guasto);

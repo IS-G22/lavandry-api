@@ -1,6 +1,6 @@
 var test = require('tape');
 var request = require('supertest');
-var app = require('../server');
+var app = require('../src/index');
 
 test('Controllo sui tipi di lavaggio', function (assert) {
     request(app)
