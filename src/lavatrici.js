@@ -98,7 +98,7 @@ exports.blocca = async (request, response) => {
 }
 
 exports.sblocca = async (request, response) => {
-    if (!global.database) {
+    if (!global.database) { 
         response.status(503)
         response.send({ error: "DataBase non raggiungibile" })
         return;
@@ -130,7 +130,7 @@ exports.sblocca = async (request, response) => {
             response.send({ status: 'ok', stato: this.SBLOCCATA });
         }
         else {
-            response.send({ status: 'ok', msg: 'lavatrice già sbloccata', stato: this.SLOCCATA });
+            response.send({ status: 'ok', msg: 'lavatrice già sbloccata', stato: this.SBLOCCATA });
         }
     else {
         response.status(404)

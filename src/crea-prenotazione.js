@@ -167,9 +167,15 @@ exports.creaPrenotazione = async (request, response) => {
         response.send({ error: "Inserisci il parametro <b>id_utente</b>" })
         return;
     }
+
+    id_tipo_lavaggio = parseInt(request.query.id_tipo_lavaggio);
+    numero_slot = parseInt(request.query.slot);
+    id_utente = parseInt(request.query.id_utente);
+    durata_lavaggio = (await tipiLavaggio.findOne({ id: id_tipo_lavaggio })).durata + 30;
+
     /**
-     * Ottengo il numero di prenotazioni attive dell'utente
-     */
+    * Ottengo il numero di prenotazioni attive dell'utente
+    */
     let queryCount = {
         id_utente: id_utente,
         data_fine: { $gte: (new Date()).getTime() }
@@ -178,15 +184,12 @@ exports.creaPrenotazione = async (request, response) => {
     /**
      * Se l'utente ha già due prenotazioni attive gli nego la possibilità di farne una terza
      */
+    console.log("Numero prenotazioni: ", numero)
     if (numero >= 2) {
         response.status(400)
         response.send({ error: "Non puoi eseguire l'operazione: hai raggiunto il numero massimo di prenotazioni" })
         return;
     }
-    id_tipo_lavaggio = parseInt(request.query.id_tipo_lavaggio);
-    numero_slot = parseInt(request.query.slot);
-    id_utente = parseInt(request.query.id_utente);
-    durata_lavaggio = (await tipiLavaggio.findOne({ id: id_tipo_lavaggio })).durata + 30;
 
     param = {
         id_lavatrice: { $in: await getLavatriciSbloccate() },
