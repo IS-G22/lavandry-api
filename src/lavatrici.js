@@ -89,7 +89,7 @@ exports.blocca = async (request, response) => {
             response.send({ status: 'ok', stato: this.BLOCCATA });
         }
         else {
-            response.send({ status: 'ok', msg: 'lavatrice già bloccata', stato: this.BLOCCATA })
+            response.send({ status: 'ok', stato: this.BLOCCATA });
         }
     else {
         response.status(404)
@@ -125,12 +125,12 @@ exports.sblocca = async (request, response) => {
                 stato: "libero",
                 id_lavatrice: id_lavatrice
             });
-            console.log("inserito: ", inserito);
+            // console.log("inserito: ", inserito);
 
             response.send({ status: 'ok', stato: this.SBLOCCATA });
         }
         else {
-            response.send({ status: 'ok', msg: 'lavatrice già sbloccata', stato: this.SBLOCCATA })
+            response.send({ status: 'ok', stato: this.SBLOCCATA });
         }
     else {
         response.status(404)
@@ -156,6 +156,6 @@ async function cancellaSlotFuturi(id_lavatrice) {
         { $set: { data_fine: (new Date()).getTime() } },
         { upsert: false }
     );
-    console.log("cancellati: ", cancellati);
-    console.log("modificati: ", modificati);
+    // console.log("cancellati: ", cancellati);
+    // console.log("modificati: ", modificati);
 }
