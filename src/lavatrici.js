@@ -89,7 +89,7 @@ exports.blocca = async (request, response) => {
             response.send({ status: 'ok', stato: this.BLOCCATA });
         }
         else {
-            response.send({ status: 'ok', stato: this.BLOCCATA });
+            response.send({ status: 'ok', msg: 'lavatrice già bloccata', stato: this.BLOCCATA });
         }
     else {
         response.status(404)
@@ -130,7 +130,7 @@ exports.sblocca = async (request, response) => {
             response.send({ status: 'ok', stato: this.SBLOCCATA });
         }
         else {
-            response.send({ status: 'ok', stato: this.SBLOCCATA });
+            response.send({ status: 'ok', msg: 'lavatrice già sbloccata', stato: this.SLOCCATA });
         }
     else {
         response.status(404)
