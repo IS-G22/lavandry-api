@@ -58,7 +58,7 @@
                   example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA UTENTE
 /api/lavatrici/apri:
-  post:
+  get:
     summary: Apri la lavatrice
     descriprion: Apri la lavatrice da id_prenotazione
     tags:
@@ -131,7 +131,7 @@
                   example: "DataBase non raggiungibile"
 # APRI LAVATRICE DA ADMIN
 /api/lavatrice/{id_lavatrice}/apri:
-  post:
+  get:
     summary: Apri la lavatrice
     descriprion: Apri la lavatrice da id_lavatrice
     tags:
@@ -204,7 +204,7 @@
                   example: "DataBase non raggiungibile"
 # BLOCCA LAVATRICE
 /api/lavatrici/blocca:
-  get:
+  post:
     summary: Blocca la lavatrice
     descriprion: Blocca la lavatrice da id_lavatrice
     tags:
@@ -268,7 +268,7 @@
                   example: "DataBase non raggiungibile"
 # BLOCCA LAVATRICE
 /api/lavatrici/sblocca:
-  get:
+  post:
     summary: Sblocca la lavatrice
     descriprion: Sblocca la lavatrice da id_lavatrice
     tags:
