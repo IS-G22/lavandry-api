@@ -61,7 +61,7 @@ global.slots;
 /**
  * File esterni
  */
-var Prenotazioni = require("./prenotazioni-v2");
+var Prenotazioni = require("./prenotazioni");
 var CreaPrenotazione = require("./crea-prenotazione");
 var Lavatrici = require("./lavatrici");
 var TipoLavaggio = require("./tipo-lavaggio");
