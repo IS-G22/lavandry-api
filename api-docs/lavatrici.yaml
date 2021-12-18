@@ -11,29 +11,26 @@
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      _id:
-                        type: integer
-                        description: Id.
-                        example: 67869
-                      id:
-                        type: integer
-                        description: Id.
-                        example: 1
-                      hardware_id:
-                        type: string
-                        description: Id hardware.
-                        example: jdkahoiha
-                      stato:
-                        type: string
-                        description: Stato della lavatrice.
-                        example: sbloccata
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                    description: Id.
+                    example: 67869
+                  id:
+                    type: integer
+                    description: Id.
+                    example: 1
+                  hardware_id:
+                    type: string
+                    description: Id hardware.
+                    example: jdkahoiha
+                  stato:
+                    type: string
+                    description: Stato della lavatrice.
+                    example: sbloccata
       400:
         description: Mancato invio parametro
         content:
@@ -77,25 +74,22 @@
             schema:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    _id:
-                      type: integer
-                      description: Id.
-                      example: 67869
-                    id:
-                      type: integer
-                      description: Id.
-                      example: 1
-                    hardware_id:
-                      type: string
-                      description: Id hardware.
-                      example: jdkahoiha
-                    stato:
-                      type: string
-                      description: Stato della lavatrice.
-                      example: sbloccata
+                _id:
+                  type: integer
+                  description: Id.
+                  example: 67869
+                id:
+                  type: integer
+                  description: Id.
+                  example: 1
+                hardware_id:
+                  type: string
+                  description: Id hardware.
+                  example: jdkahoiha
+                stato:
+                  type: string
+                  description: Stato della lavatrice.
+                  example: sbloccata
       400:
         description: Mancato invio parametro
         content:
@@ -150,25 +144,22 @@
             schema:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    _id:
-                      type: integer
-                      description: Id.
-                      example: 67869
-                    id:
-                      type: integer
-                      description: Id.
-                      example: 1
-                    hardware_id:
-                      type: string
-                      description: Id hardware.
-                      example: jdkahoiha
-                    stato:
-                      type: string
-                      description: Stato della lavatrice.
-                      example: sbloccata
+                _id:
+                  type: integer
+                  description: Id.
+                  example: 67869
+                id:
+                  type: integer
+                  description: Id.
+                  example: 1
+                hardware_id:
+                  type: string
+                  description: Id hardware.
+                  example: jdkahoiha
+                stato:
+                  type: string
+                  description: Stato della lavatrice.
+                  example: sbloccata
       400:
         description: Mancato invio parametro
         content:
@@ -222,17 +213,14 @@
             schema:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    status:
-                      type: string
-                      description: Messaggio di stato.
-                      example: ok
-                    stato:
-                      type: string
-                      description: Stato della lavatrice.
-                      example: sbloccata
+                status:
+                  type: string
+                  description: Messaggio di stato.
+                  example: ok
+                stato:
+                  type: string
+                  description: Stato della lavatrice.
+                  example: sbloccata
       400:
         description: Mancato invio parametro
         content:
@@ -286,17 +274,14 @@
             schema:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    status:
-                      type: string
-                      description: Messaggio di stato.
-                      example: ok
-                    stato:
-                      type: string
-                      description: Stato della lavatrice.
-                      example: bloccata
+                status:
+                  type: string
+                  description: Messaggio di stato.
+                  example: ok
+                stato:
+                  type: string
+                  description: Stato della lavatrice.
+                  example: bloccata
       400:
         description: Mancato invio parametro
         content:

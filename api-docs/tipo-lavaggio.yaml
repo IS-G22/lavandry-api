@@ -9,26 +9,23 @@
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      _id:
-                        type: integer
-                        description: Id.
-                        example: 67869
-                      id:
-                        type: integer
-                        description: Id.
-                        example: 1
-                      nome:
-                        type: string
-                        description: Nome del tipo di lavaggio.
-                        example: Rapido
-                      durata:
-                        type: integer
-                        description: Durata in minuti
-                        example: 30
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                    description: Id.
+                    example: 67869
+                  id:
+                    type: integer
+                    description: Id.
+                    example: 1
+                  nome:
+                    type: string
+                    description: Nome del tipo di lavaggio.
+                    example: Rapido
+                  durata:
+                    type: integer
+                    description: Durata in minuti
+                    example: 30
